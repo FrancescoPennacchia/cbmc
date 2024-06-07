@@ -54,6 +54,7 @@ int main()
     }
 
     //Almeno 2/3 nell'insime 1
+
     for(int i = 0; i < N; i++)
     {
         if(vettore_sesso[i] ==  1){
