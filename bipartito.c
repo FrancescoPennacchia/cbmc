@@ -12,8 +12,36 @@ int matrice_incidenza[N][N] =
     {0,0,1,0,0,0}
 };
 
+int matrice_dei_matching[N][N] = {
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
+};
+
 
 int vettore_sesso[N] =  {1,1,0,0,0,0}; // 1 Maschio, 0 Femmina
+
+int check_nodo(int nodo)
+{
+    int cont = 0;
+
+    for(int i=0; i < N; i++)
+    {
+        if(matrice_incidenza[nodo][i] == 1)
+        {
+            cont = cont + 1;
+        }
+    }
+    if(cont > 1)
+    {
+        return 0;
+    }
+    return 1;
+}
+
 
 int main()
 {
@@ -63,17 +91,19 @@ int main()
     float due_terzi = ((N/3)*2);
     __CPROVER_assume( cont_di_uno >=  due_terzi || cont_di_zero >= due_terzi );
 
-    assert(0);
+    //assert(0);
 
     // Fallisce con matching unico
-    /*
     for(int i = 0; i < N; i ++)
     {
         for(int j = 0; j < N; j++)
         {
-            if(primo_insieme[i] == 1 && secondo_insieme [j] == 1) {
-                 assert(matrice_incidenza[i][j] == 1);
+            if(primo_insieme[i] == 1 && secondo_insieme [j] == 1 && i != j) {
+                 matrice_dei_matching[i][j] = 1;
+                 __CPROVER_assume(check_nodo(i) == 1);
              }
         }
-    }*/
+    }
+
+    assert(0);
 }
