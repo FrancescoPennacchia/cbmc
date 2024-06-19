@@ -36,7 +36,7 @@ int distanza_minima(int nodo_corrente){
 int cammino_minimo(int nodo_corrente){
     int nodo_successivo = distanza_minima(nodo_corrente);
     somma = somma + matrice_incidenza_pesi[nodo_corrente][nodo_successivo];
-    nodi_visitati[nodo_successivo] = 1;
+    nodi_visitati[nodo_successivo] = nodi_visitati[nodo_successivo] + 1;
     nodo_corrente = nodo_successivo;
 
     if(nodo_corrente == nodo_start){
@@ -91,6 +91,8 @@ int main() {
 
     minimo_greedy = cammino_minimo(nodo_corrente);
 
+
+
 /*
     for(int i = 0; i < N; i++){
         nodo_successivo = nondet_int();
@@ -107,7 +109,7 @@ int main() {
         nodo_corrente = nodo_successivo;
 
     }
-
+    */
 
 
     for(int i = 0; i < N; i++){
@@ -116,7 +118,7 @@ int main() {
         } else {
             __CPROVER_assume(nodi_visitati[i] == 2);
         }
-    }*/
+    }
 
     __CPROVER_assume(somma == minimo_greedy);
     assert(0);
